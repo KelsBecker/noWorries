@@ -12,10 +12,12 @@ const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
 
-  // componentDidMount(){
-  //   fetch('http://localhost:3000/locations')
-
-  // }
+  componentDidMount(){
+    fetch('http://localhost:3000/locations')
+    .then(response => response.json())
+    .then(console.log)
+    .catch(error => console.error(error))
+  }
 
   createHomeTabs = () => 
     <Tab.Navigator>
