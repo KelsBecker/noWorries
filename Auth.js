@@ -1,15 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 
-export default function Auth() {
+export default function Auth(props) {
 
 
     return(
         <View style={styles.container}>
-            <Text style={{color: 'red', fontSize: 30}}>
-                Auth
-            </Text>
-            <Button title='press me' onPress={null}/>    
+            <Text style={{color: 'red', fontSize: 30}}>Auth.js</Text>
+            <Button title='login' onPress={() => props.navigation.navigate('Homepage')}/>    
         </View>
     )
 }

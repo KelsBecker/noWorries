@@ -1,13 +1,10 @@
 import React from 'react'
 import {StyleSheet, Text, View, Button} from 'react-native'
 
-export default function Homepage(props) {
-    console.log(props)
+export default function Homepage() {
     return(
         <View style={styles.container}>
             <Text style={{color: 'red', fontSize: 40}}>Homepage</Text>
-            <Button title='log in' onPress={() => props.navigation.navigate('Auth')} /> 
-            <Button title='sign up'/>
         </View>
     )
 }
