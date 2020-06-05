@@ -2,10 +2,13 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View } from 'react-native';
-import Homepage from './Homepage'
 import Auth from './Auth'
+import Homepage from './Homepage'
+import ProfileScreen from './ProfileScreen'
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
 
@@ -14,16 +17,18 @@ export default class App extends React.Component {
 
   // }
 
-  render() {
-    const Stack = createStackNavigator();
+  createHomeTabs = () => 
+    <Tab.Navigator>
+      <Tab.Screen name='Map' component={Homepage}/>
+      <Tab.Screen name='Profile' component={ProfileScreen} />
+    </Tab.Navigator>
 
+  render() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='Homepage' component={Homepage} />
-          <Stack.Screen name='Auth'> 
-          {props => <Auth {...props} />} 
-          </Stack.Screen>
+          <Stack.Screen name='Auth' component={Auth}/> 
+          <Stack.Screen name='Homepage' children={this.createHomeTabs}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
