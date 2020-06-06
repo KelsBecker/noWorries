@@ -1,19 +1,23 @@
 import React from 'react'
-import {StyleSheet, Text, View, Button} from 'react-native'
+import {StyleSheet, View} from 'react-native'
+import MapScreen from './MapScreen'
 
-export default function Homepage() {
-    return(
-        <View style={styles.container}>
-            <Text style={{color: 'red', fontSize: 40}}>Homepage</Text>
-        </View>
-    )
+export default class Homepage extends React.Component{
+    
+    render() {
+        return(
+            <View>
+                <MapScreen />
+            </View>
+        )
+    }
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
+    const styles = StyleSheet.create({
+        container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        },
+    });
