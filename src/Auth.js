@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {StyleSheet, View, Button} from 'react-native';
 import Login from './Login.js'
 
 export default function Auth(props) {

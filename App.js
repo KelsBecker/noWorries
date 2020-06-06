@@ -4,19 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet } from 'react-native';
-import Auth from './Auth'
-import Homepage from './Homepage'
-import ProfileScreen from './ProfileScreen'
+import Auth from './src/Auth'
+import Homepage from './src/Homepage'
+import ProfileScreen from './src/ProfileScreen'
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
 
 export default class App extends React.Component {
-
-  // state = {
-  //   locations: []
-  // }
 
   createHomeTabs = () => 
     <Tab.Navigator>
