@@ -1,23 +1,16 @@
 import React from 'react'
-import {StyleSheet} from 'react-native'
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import {StyleSheet, } from 'react-native'
+import MapView, {PROVIDER_GOOGLE, Marker, Heatmap} from 'react-native-maps';
 
 export default class MapScreen extends React.Component {
-    state = {
-        locations: []
-    }
 
-    componentDidMount(){
-        fetch('https://4e9d4fd97395.ngrok.io/locations')
-        .then(response => response.json())
-        .then(data => this.setState({locations: data}))
-    }
 
     render(){
-        console.log('MapScreen State=',  this.state.locations)
+        console.log('MapScreen Props=',  this.props)
         return(
             <MapView
             provider={PROVIDER_GOOGLE}
+            showsUserLocation={true}
             style={styles.map}
             region={{
                 latitude: 40.712776,
@@ -25,11 +18,22 @@ export default class MapScreen extends React.Component {
                 latitudeDelta: 0.09,
                 longitudeDelta: 0.035
             }}>
-                {this.state.locations.map(location => 
+                {this.props.locations.map((location, index) =>
                 <Marker
+                key={index}
                 coordinate={{latitude: location.latitude, longitude: location.longitude}}
                 title={location.name}>     
                 </Marker>)}
+                <Heatmap
+                points={this.props.locations}
+                radius={40}
+                opacity={1}
+                gradient={{
+                    colors: ['black', 'purple', 'red', 'yellow', 'white'],
+                    colorMapSize: 200,
+                    startPoints: [0.01, 0.04, 0.1, 0.45, 0.5]
+                }}
+                ></Heatmap>
 
             </MapView>
         )
