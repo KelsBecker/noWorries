@@ -13,6 +13,16 @@ const Tab = createBottomTabNavigator();
 
 
 export default class App extends React.Component {
+  //currently only have one user. Once there are more users I will have to current user on login
+  state = {
+    users: null
+  }
+
+  componentDidMount(){
+    fetch('https://06fc1403bc65.ngrok.io/users')
+    .then(response => response.json())
+    .then(data => this.setState({users: data}))
+  }
 
   createHomeTabs = () => 
     <Tab.Navigator>
@@ -21,7 +31,7 @@ export default class App extends React.Component {
     </Tab.Navigator>
 
   render() {
-    
+    // console.log('Users', this.state)
     return (
       <NavigationContainer>
         <Stack.Navigator>
