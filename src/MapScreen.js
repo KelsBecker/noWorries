@@ -1,12 +1,13 @@
 import React from 'react'
-import {StyleSheet, } from 'react-native'
+import {StyleSheet} from 'react-native'
 import MapView, {PROVIDER_GOOGLE, Marker, Heatmap} from 'react-native-maps';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 export default class MapScreen extends React.Component {
 
-
     render(){
-        console.log('MapScreen Props=',  this.props)
+        console.log('MapScreen props=',  this.props.locations)
         return(
             <MapView
             provider={PROVIDER_GOOGLE}
