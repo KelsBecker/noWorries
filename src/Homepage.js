@@ -21,14 +21,13 @@ export default class Homepage extends React.Component{
         this.setState({selectedCategory: value}, this.sortedLocations)
     }
 
-    //this is not working...
+
     sortedLocations = () => {
-        let locationArray = [...this.state.filteredLocations]
-        console.log('AM I HITTING THIS FUNCTION')
+        let locationArray = []
         if(this.state.selectedCategory === 'Parks'){
-            locationArray.filter(location => location.category_id === 2) 
+            locationArray = [...this.state.locations].filter(location => location.category_id === 2) 
         }else if(this.state.selectedCategory === 'Groceries'){
-            locationArray.filter(location => location.category_id === 1) 
+            locationArray = [...this.state.locations].filter(location => location.category_id === 1) 
         } else {
             locationArray = [...this.state.locations]
         }
@@ -37,10 +36,6 @@ export default class Homepage extends React.Component{
 
 
     render() {
-        console.log('Category', this.state.selectedCategory)
-        // console.log('LocationsArray', this.state.filteredLocations)
-        // console.log('Filtered Locations', this.state.filteredLocations.filter(location => location.category_id === 1))
-        // console.log('Filter Correct?', this.state.filteredLocations.filter(location => location.category_id === 2))
         return(
             <View>
                 <CategoryPicker categorySelect={this.handleCategorySelect} />

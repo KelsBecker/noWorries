@@ -7,7 +7,6 @@ import * as Permissions from 'expo-permissions';
 export default class MapScreen extends React.Component {
 
     render(){
-        console.log('MapScreen props=',  this.props.locations)
         return(
             <MapView
             provider={PROVIDER_GOOGLE}
