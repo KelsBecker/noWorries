@@ -1,6 +1,8 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
 import MapView, {PROVIDER_GOOGLE, Marker, Heatmap} from 'react-native-maps';
+import Carousel from 'react-native-snap-carousel';
+import CarouselDisplay from './CarouselDisplay'
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
@@ -34,7 +36,7 @@ export default class MapScreen extends React.Component {
                     startPoints: [0.01, 0.04, 0.1, 0.45, 0.5]
                 }}
                 ></Heatmap>
-
+                
             </MapView>
         )
     }

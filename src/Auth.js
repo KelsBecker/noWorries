@@ -3,11 +3,10 @@ import {StyleSheet, View, Button} from 'react-native';
 import Login from './Login.js'
 
 export default function Auth(props) {
-
     return(
         <View style={styles.container}>
-            <Login />
-            <Button title='login' onPress={() => props.navigation.navigate('Homepage')}/>    
+            <Login emailChange={props.handleEmailChange} passwordChange={props.handlePasswordChange} />
+            <Button title='login' onPress={() => props.currentUser !== undefined ? props.props.navigation.navigate('Homepage', {currentUser: props.currentUser}): null}/>    
         </View>
     )
 }

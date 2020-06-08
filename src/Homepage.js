@@ -2,19 +2,27 @@ import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import MapScreen from './MapScreen'
 import CategoryPicker from './CategoryPicker'
+const ngrokURL = 'https://2a0e61d7d874.ngrok.io'
 
 export default class Homepage extends React.Component{
+
     
     state = {
         locations: [],
         selectedCategory: '',
-        filteredLocations: []
+        filteredLocations: [],
+        favorites: []
     }
 
     componentDidMount(){
-        fetch('https://06fc1403bc65.ngrok.io/locations')
-        .then(response => response.json())
-        .then(data => this.setState({locations: data, filteredLocations: data}))
+        Promise.all([fetch('https://2a0e61d7d874.ngrok.io/locations'), fetch('https://2a0e61d7d874.ngrok.io/favorites')])
+        .then(([locationResponse, favoritesResponse]) => Promise.all([locationResponse.json(), favoritesResponse.json()]))
+        .then(([locationData, favoriteData]) => this.setState({
+            locations: locationData, 
+            filteredLocations: locationData,
+            favorites: favoriteData
+        }))
+        
     }
 
     handleCategorySelect = (value) => {
@@ -36,8 +44,10 @@ export default class Homepage extends React.Component{
 
 
     render() {
+        console.log('HOMEPAGE PARAMS', this.props.navigation)
+        // console.log('Faves', this.state.locations)
         return(
-            <View>
+            <View style={styles.container}>
                 <CategoryPicker categorySelect={this.handleCategorySelect} />
                 <MapScreen locations={this.state.filteredLocations} />
             </View>
@@ -47,9 +57,10 @@ export default class Homepage extends React.Component{
 
     const styles = StyleSheet.create({
         container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+            ...StyleSheet.absoluteFillObject
+        // flex: 1,
+        // backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         },
     });

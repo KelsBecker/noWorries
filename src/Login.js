@@ -1,13 +1,13 @@
 import React from 'react'
 import {StyleSheet, Text, View, TextInput} from 'react-native'
 
-export default function Login() {
+export default function Login(props) {
     return(
         <>
-        <Text style={styles.formLabel}>Form Demo</Text>
+        <Text style={styles.formLabel}>Welcome, Please Sign In</Text>
         <View>
-            <TextInput style={styles.inputStyle} placeholder="Email" />
-            <TextInput style={styles.inputStyle} secureTextEntry={true} placeholder="Password" />
+            <TextInput style={styles.inputStyle} placeholder="Email" onChangeText={text => props.emailChange(text)}/>
+            <TextInput style={styles.inputStyle} secureTextEntry={true} placeholder="Password" onChangeText={text => props.passwordChange(text)} />
         </View>
         </>
     )

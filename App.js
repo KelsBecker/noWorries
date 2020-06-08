@@ -13,29 +13,47 @@ const Tab = createBottomTabNavigator();
 
 
 export default class App extends React.Component {
-  //currently only have one user. Once there are more users I will have to current user on login
+
   state = {
-    users: null
+    users: null,
+    email:'',
+    password:'',
+    currentUser: undefined
   }
 
   componentDidMount(){
-    fetch('https://06fc1403bc65.ngrok.io/users')
+    fetch('https://2a0e61d7d874.ngrok.io/users')
     .then(response => response.json())
     .then(data => this.setState({users: data}))
+  }
+
+  handleEmailChange = (text) => {
+    this.setState({email: text}, this.findCurrentUser)
+  }
+
+  handlePasswordChange = (text) => {
+    this.setState({password: text})
+  }
+
+  findCurrentUser = () => {
+    let user = this.state.users.find(user => user.email.toLowerCase() === this.state.email.toLowerCase())
+      this.setState({currentUser: user})
   }
 
   createHomeTabs = () => 
     <Tab.Navigator>
       <Tab.Screen name='Map' component={Homepage} />
-      <Tab.Screen name='Profile' component={ProfileScreen} />
+      <Tab.Screen name='Profile' component={ProfileScreen}/>
     </Tab.Navigator>
 
   render() {
-    // console.log('Users', this.state)
+    const {handleEmailChange, handlePasswordChange} = this
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='Auth' component={Auth}/> 
+          <Stack.Screen name='Auth'>
+          {props => <Auth props={props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser}/>}
+          </Stack.Screen>
           <Stack.Screen name='Homepage'children={this.createHomeTabs}/>
         </Stack.Navigator>
       </NavigationContainer>
