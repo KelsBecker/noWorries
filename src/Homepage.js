@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import MapScreen from './MapScreen'
 import CategoryPicker from './CategoryPicker'
+import ProfileScreen from './ProfileScreen'
 const ngrokURL = 'https://2a0e61d7d874.ngrok.io'
 
 export default class Homepage extends React.Component{
@@ -11,18 +12,19 @@ export default class Homepage extends React.Component{
         locations: [],
         selectedCategory: '',
         filteredLocations: [],
-        favorites: []
+        favorites: [],
+        currentUser: ''
     }
 
     componentDidMount(){
-        Promise.all([fetch('https://2a0e61d7d874.ngrok.io/locations'), fetch('https://2a0e61d7d874.ngrok.io/favorites')])
+        Promise.all([fetch('https://7b68c0e0436d.ngrok.io/locations'), fetch('https://7b68c0e0436d.ngrok.io/favorites')])
         .then(([locationResponse, favoritesResponse]) => Promise.all([locationResponse.json(), favoritesResponse.json()]))
         .then(([locationData, favoriteData]) => this.setState({
             locations: locationData, 
             filteredLocations: locationData,
-            favorites: favoriteData
-        }))
-        
+            favorites: favoriteData,
+            currentUser: this.props.currentUser
+        }))     
     }
 
     handleCategorySelect = (value) => {
@@ -44,12 +46,13 @@ export default class Homepage extends React.Component{
 
 
     render() {
-        console.log('HOMEPAGE PARAMS', this.props.navigation)
-        // console.log('Faves', this.state.locations)
+        console.log('HOMEPAGE USER', this.state.currentUser)
+        console.log('HOMEPAGE FAVORITES', this.state.favorites)
         return(
             <View style={styles.container}>
                 <CategoryPicker categorySelect={this.handleCategorySelect} />
                 <MapScreen locations={this.state.filteredLocations} />
+                {/* <ProfileScreen currentUser={this.state.currentUser} favorites={this.state.favorites} /> */}
             </View>
         )
     }

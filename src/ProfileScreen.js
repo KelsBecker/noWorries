@@ -1,13 +1,26 @@
 import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 
-export default function ProfileScreen(props){
-    console.log('PROFILE',props)
-    return(
-        <View style={styles.container}>
-            <Text style={{color: 'red', fontSize: 40}}>Profile Page</Text>
-        </View>
-    )
+export default class ProfileScreen extends React.Component {
+
+    state = {
+        currentUser: ''
+    }
+
+    componentDidMount(){
+        this.setState({
+            currentUser: this.props.currentUser,
+        })
+    }
+
+    render(){
+        console.log('State', this.state)
+        return(
+            <View style={styles.container}>
+                <Text style={{color: 'red', fontSize: 40}}>Hello @{this.state.currentUser.username}</Text>
+            </View>
+        )
+    }
 }
 
     const styles = StyleSheet.create({

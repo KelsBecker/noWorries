@@ -22,7 +22,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch('https://2a0e61d7d874.ngrok.io/users')
+    fetch('https://7b68c0e0436d.ngrok.io/users')
     .then(response => response.json())
     .then(data => this.setState({users: data}))
   }
@@ -42,8 +42,12 @@ export default class App extends React.Component {
 
   createHomeTabs = () => 
     <Tab.Navigator>
-      <Tab.Screen name='Map' component={Homepage} />
-      <Tab.Screen name='Profile' component={ProfileScreen}/>
+      <Tab.Screen name='Map'> 
+      {props => <Homepage props={props} currentUser={this.state.currentUser}/>}
+      </Tab.Screen>
+      <Tab.Screen name='Profile'>
+        {props => <ProfileScreen currentUser={this.state.currentUser}/>}
+      </Tab.Screen> 
     </Tab.Navigator>
 
   render() {
@@ -54,7 +58,7 @@ export default class App extends React.Component {
           <Stack.Screen name='Auth'>
           {props => <Auth props={props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser}/>}
           </Stack.Screen>
-          <Stack.Screen name='Homepage'children={this.createHomeTabs}/>
+          <Stack.Screen name='Homepage' children={this.createHomeTabs}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
