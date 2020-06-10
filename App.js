@@ -2,13 +2,12 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet } from 'react-native';
+import { StyleSheet} from 'react-native';
 import Auth from './src/Auth'
 import Homepage from './src/Homepage'
 import ProfileScreen from './src/ProfileScreen'
+import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 
 
@@ -22,7 +21,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch('https://7b68c0e0436d.ngrok.io/users')
+    fetch('https://c0600bc41de8.ngrok.io/users')
     .then(response => response.json())
     .then(data => this.setState({users: data}))
   }
@@ -40,25 +39,23 @@ export default class App extends React.Component {
       this.setState({currentUser: user})
   }
 
-  createHomeTabs = () => 
-    <Tab.Navigator>
-      <Tab.Screen name='Map'> 
-      {props => <Homepage props={props} currentUser={this.state.currentUser}/>}
-      </Tab.Screen>
-      <Tab.Screen name='Profile'>
-        {props => <ProfileScreen currentUser={this.state.currentUser}/>}
-      </Tab.Screen> 
-    </Tab.Navigator>
-
   render() {
     const {handleEmailChange, handlePasswordChange} = this
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='Auth'>
+          <Stack.Screen name='Auth' options={{title: 'noWorries'}}>
           {props => <Auth props={props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser}/>}
           </Stack.Screen>
-          <Stack.Screen name='Homepage' children={this.createHomeTabs}/>
+          <Stack.Screen name='Homepage'>
+          {props => <Homepage {...props} currentUser={this.state.currentUser}/>}
+          </Stack.Screen>
+          <Stack.Screen name='Profile'>
+          {props => <ProfileScreen {...props} currentUser={this.state.currentUser}/>}
+          </Stack.Screen>
+          <Stack.Screen name='Locations'>
+          {props => <LocationsScreen {...props} currentUser={this.state.currentUser}/>}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     );

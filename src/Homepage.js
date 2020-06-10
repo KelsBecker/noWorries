@@ -1,13 +1,13 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, Button} from 'react-native'
 import MapScreen from './MapScreen'
 import CategoryPicker from './CategoryPicker'
-import ProfileScreen from './ProfileScreen'
 const ngrokURL = 'https://2a0e61d7d874.ngrok.io'
+
+
 
 export default class Homepage extends React.Component{
 
-    
     state = {
         locations: [],
         selectedCategory: '',
@@ -17,7 +17,7 @@ export default class Homepage extends React.Component{
     }
 
     componentDidMount(){
-        Promise.all([fetch('https://7b68c0e0436d.ngrok.io/locations'), fetch('https://7b68c0e0436d.ngrok.io/favorites')])
+        Promise.all([fetch('https://c0600bc41de8.ngrok.io/locations'), fetch('https://c0600bc41de8.ngrok.io/favorites')])
         .then(([locationResponse, favoritesResponse]) => Promise.all([locationResponse.json(), favoritesResponse.json()]))
         .then(([locationData, favoriteData]) => this.setState({
             locations: locationData, 
@@ -30,7 +30,20 @@ export default class Homepage extends React.Component{
     handleCategorySelect = (value) => {
         this.setState({selectedCategory: value}, this.sortedLocations)
     }
-
+    
+    addFavorite = (location) => {
+        let newFave = {user_id: this.state.currentUser.id, location_id: location}
+        fetch('https://c0600bc41de8.ngrok.io/favorites', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newFave)
+        })
+        .then(response => response.json())
+        .then(data => this.setState({favorites: [...this.state.favorites, data]}))
+    }
 
     sortedLocations = () => {
         let locationArray = []
@@ -46,13 +59,12 @@ export default class Homepage extends React.Component{
 
 
     render() {
-        console.log('HOMEPAGE USER', this.state.currentUser)
-        console.log('HOMEPAGE FAVORITES', this.state.favorites)
         return(
             <View style={styles.container}>
                 <CategoryPicker categorySelect={this.handleCategorySelect} />
                 <MapScreen locations={this.state.filteredLocations} />
-                {/* <ProfileScreen currentUser={this.state.currentUser} favorites={this.state.favorites} /> */}
+                <Button title='Go To Profile' onPress={() => this.props.navigation.navigate('Profile', {favorites: this.state.favorites})}></Button>
+                <Button title='Add Favorites' onPress={() => this.props.navigation.navigate('Locations', {locations: this.state.locations, addFavorite: this.addFavorite})}></Button>
             </View>
         )
     }
@@ -65,5 +77,5 @@ export default class Homepage extends React.Component{
         // backgroundColor: '#fff',
         // alignItems: 'center',
         // justifyContent: 'center',
-        },
+        }
     });
