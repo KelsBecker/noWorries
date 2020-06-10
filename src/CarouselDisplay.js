@@ -1,12 +1,24 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, Dimensions} from 'react-native'
 import Carousel from 'react-native-snap-carousel';
 
-export default function CarouselDisplay() {
+export default function CarouselDisplay(props) {
+    console.log('CAROUSEL', props)
 
-    return(
+    renderCarouselItem = ({item}) => {
         <View>
-            <Text>Carousel Goes Here</Text>
+            <Text>{item.name}</Text>
         </View>
+    }
+    return(
+        <>
+        <Carousel
+            ref={(c) => { this._carousel = c; }}
+            data={this.props.locations}
+            renderItem={renderCarouselItem}
+            sliderWidth={Dimensions.get('window').width}
+            itemWidth={200}
+        />
+        </>
     )
 }

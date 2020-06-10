@@ -1,33 +1,38 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {StyleSheet, ScrollView} from 'react-native'
+import {Container, Card, CardItem, Text, Body} from 'native-base'
+
 
 export default class ProfileScreen extends React.Component {
 
-    state = {
-        currentUser: ''
-    }
-
-    componentDidMount(){
-        this.setState({
-            currentUser: this.props.currentUser,
-        })
-    }
-
     render(){
-        console.log('State', this.state)
+        console.log('PROFILE PAGE', this.props.route.params.favorites)
         return(
-            <View style={styles.container}>
-                <Text style={{color: 'red', fontSize: 40}}>Hello @{this.state.currentUser.username}</Text>
-            </View>
+            <ScrollView>
+                <Container>
+                    <Text style={{color: 'red', fontSize: 40}}>@{this.props.currentUser.username}</Text>
+                    {this.props.route.params.favorites.map((favorite, index) => 
+                    <Card key={index}>
+                        <CardItem>
+                            <Body>
+                                <Text>{favorite.location.name}</Text>
+                                <Text>Add A Description or Features</Text>
+                            </Body>
+                        </CardItem>
+                    </Card>
+                    )}
+                </Container>
+            </ScrollView>
         )
     }
 }
 
     const styles = StyleSheet.create({
         container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        // flex: 1,
+        // backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         },
     });
+

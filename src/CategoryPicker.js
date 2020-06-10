@@ -1,14 +1,26 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
+// import {Picker} from '@react-native-community/picker';
 
 
 export default function CategoryPicker(props) {
 
     return(
         <>
+        {/* <Picker
+        selectedValue={'All Locations'}
+        style={{height: 50, width: 100}}
+        onValueChange={(itemValue) =>
+        props.categorySelect(itemValue)
+        }>
+        <Picker.Item label="All Locations" value="All Locations" />
+        <Picker.Item label="Groceries" value="Groceries" />
+        <Picker.Item label="Parks" value="Parks" />
+        <Picker.Item label="Your Favorites" value="Your Favorites" />
+        </Picker> */}
         <RNPickerSelect
-            style={styles.inputIOS}
+            style={styles.container}
             onValueChange={(value) => props.categorySelect(value)}
             items={[
                 { label: 'All Locations', value: 'All Locations' },
@@ -24,14 +36,11 @@ export default function CategoryPicker(props) {
 
 //styles not showing up
 const styles = StyleSheet.create({
-    inputIOS: {
-        fontSize: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 4,
-        color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        height: 100,
+        justifyContent: 'center',
     }
+
 })
