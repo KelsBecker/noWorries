@@ -21,7 +21,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch('https://c0600bc41de8.ngrok.io/users')
+    fetch('https://7f163d1f046b.ngrok.io/users')
     .then(response => response.json())
     .then(data => this.setState({users: data}))
   }
@@ -65,7 +65,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
   },

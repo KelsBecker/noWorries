@@ -1,9 +1,7 @@
 import React from 'react'
-import {StyleSheet, Dimensions, View, Text, Modal, Button, TouchableHighlight} from 'react-native'
+import {StyleSheet} from 'react-native'
 import MapView, {PROVIDER_GOOGLE, Marker, Heatmap, Callout} from 'react-native-maps';
-import Carousel from 'react-native-snap-carousel';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
+
 
 export default class MapScreen extends React.Component {
 
@@ -48,10 +46,5 @@ const styles = StyleSheet.create({
         height: '90%',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    carousel: {
-        position: 'absolute',
-        bottom: 0,
-        marginBottom: 48
     },
 });

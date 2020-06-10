@@ -6,7 +6,7 @@ export default function Auth(props) {
     return(
         <View style={styles.container}>
             <Login emailChange={props.handleEmailChange} passwordChange={props.handlePasswordChange} />
-            <Button title='login' onPress={() => props.currentUser !== undefined ? props.props.navigation.navigate('Homepage'): null}/>    
+            <Button title='login' onPress={() => props.currentUser !== undefined ? props.props.navigation.navigate('Homepage'): alert('Enter Correct Credentials Please')}/>    
         </View>
     )
 }
