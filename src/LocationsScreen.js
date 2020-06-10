@@ -1,11 +1,13 @@
 import React from 'react'
-import {Container, Card, CardItem, Text, Body, Right, Button} from 'native-base'
-import {ScrollView} from 'react-native'
+import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
+import {ScrollView, StyleSheet, View} from 'react-native'
+
 
 export default function LocationsScreen(props) {
-    console.log('LOCATION SCREEN', props)
+    // console.log('LOCATION SCREEN', props)
     const {addFavorite} = props.route.params
     return(
+    <View style={styles.container}>
         <ScrollView>
             <Container>
                 {props.route.params.locations.map(location => 
@@ -24,6 +26,16 @@ export default function LocationsScreen(props) {
                 </Card>)}
             </Container>
         </ScrollView>
+    </View>
     )
-
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 40,
+        paddingHorizontal: 20,
+        paddingBottom: 40,
+        backgroundColor: '#fff'
+    },
+});

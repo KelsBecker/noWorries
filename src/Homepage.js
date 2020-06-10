@@ -17,7 +17,7 @@ export default class Homepage extends React.Component{
     }
 
     componentDidMount(){
-        Promise.all([fetch('https://c0600bc41de8.ngrok.io/locations'), fetch('https://c0600bc41de8.ngrok.io/favorites')])
+        Promise.all([fetch('https://7f163d1f046b.ngrok.io/locations'), fetch('https://7f163d1f046b.ngrok.io/favorites')])
         .then(([locationResponse, favoritesResponse]) => Promise.all([locationResponse.json(), favoritesResponse.json()]))
         .then(([locationData, favoriteData]) => this.setState({
             locations: locationData, 
@@ -33,7 +33,7 @@ export default class Homepage extends React.Component{
     
     addFavorite = (location) => {
         let newFave = {user_id: this.state.currentUser.id, location_id: location}
-        fetch('https://c0600bc41de8.ngrok.io/favorites', {
+        fetch('https://7f163d1f046b.ngrok.io/favorites', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -51,6 +51,8 @@ export default class Homepage extends React.Component{
             locationArray = [...this.state.locations].filter(location => location.category_id === 2) 
         }else if(this.state.selectedCategory === 'Groceries'){
             locationArray = [...this.state.locations].filter(location => location.category_id === 1) 
+        } else if(this.state.selectedCategory === 'Your Favorites'){
+            locationArray = [...this.state.locations].filter(location => location.favorites.location_id === location.id)
         } else {
             locationArray = [...this.state.locations]
         }
@@ -72,10 +74,8 @@ export default class Homepage extends React.Component{
 
     const styles = StyleSheet.create({
         container: {
-            ...StyleSheet.absoluteFillObject
-        // flex: 1,
-        // backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
         }
     });
