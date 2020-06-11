@@ -1,23 +1,30 @@
 import React from 'react'
 import {StyleSheet, ScrollView} from 'react-native'
-import {Container, Card, CardItem, Text, Body} from 'native-base'
+import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
 
 
 export default class ProfileScreen extends React.Component {
 
     render(){
-        // console.log('PROFILE', this.props)
+        const userFave = this.props.favorites.filter(favorite => favorite.user_id === this.props.currentUser.id)
+        // console.log('PROFILE', userFave )
         return(
             <ScrollView>
                 <Container>
                     <Text style={{color: 'red', fontSize: 40}}>@{this.props.currentUser.username}</Text>
-                    {this.props.favorites.map(favorite => 
+                    {userFave.map(favorite => 
                     <Card key={favorite.id}>
                         <CardItem>
                             <Body>
                                 <Text>{favorite.location.name}</Text>
-                                <Text>Add A Description or Features</Text>
+                                <Text>{favorite.location.address}</Text>
+                                <Text>{favorite.location.description}</Text>
                             </Body>
+                        </CardItem>
+                        <CardItem>
+                        <Button bordered dark onPress={() => this.props.removeFavorite(favorite.id)}>
+                            <Text>Remove Favorite</Text>
+                        </Button>
                         </CardItem>
                     </Card>
                     )}
