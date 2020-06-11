@@ -6,13 +6,13 @@ import {Container, Card, CardItem, Text, Body} from 'native-base'
 export default class ProfileScreen extends React.Component {
 
     render(){
-        console.log('PROFILE PAGE', this.props.route.params.favorites)
+        // console.log('PROFILE', this.props)
         return(
             <ScrollView>
                 <Container>
                     <Text style={{color: 'red', fontSize: 40}}>@{this.props.currentUser.username}</Text>
-                    {this.props.route.params.favorites.map((favorite, index) => 
-                    <Card key={index}>
+                    {this.props.favorites.map(favorite => 
+                    <Card key={favorite.id}>
                         <CardItem>
                             <Body>
                                 <Text>{favorite.location.name}</Text>
