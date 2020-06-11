@@ -6,7 +6,7 @@ export default function Auth(props) {
     return(
         <View style={styles.container}>
             <Login emailChange={props.handleEmailChange} passwordChange={props.handlePasswordChange} />
-            <Button title='login' onPress={() => props.currentUser !== undefined ? props.props.navigation.navigate('Homepage'): alert('Enter Correct Credentials Please')}/>    
+            <Button title='login' onPress={() => props.currentUser !== undefined ? props.navigation.navigate('Homepage'): alert('Enter Correct Credentials Please')}/>    
         </View>
     )
 }
@@ -14,7 +14,7 @@ export default function Auth(props) {
     const styles = StyleSheet.create({
         container: {
             flex: 1,
-            backgroundColor: '#fff',
+            backgroundColor: '#6a9c72',
             alignItems: 'center',
             justifyContent: 'center',
             height: 50,

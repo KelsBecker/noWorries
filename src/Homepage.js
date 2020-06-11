@@ -19,7 +19,6 @@ export default class Homepage extends React.Component{
     }
 
     sortedLocations = () => {
-        console.log("SELECTION", this.state.selectedCategory)
         let locationArray = []
         if(this.state.selectedCategory === 'Parks'){
             locationArray = [...this.props.locations].filter(location => location.category_id === 2) 
