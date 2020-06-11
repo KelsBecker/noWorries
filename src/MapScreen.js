@@ -1,12 +1,12 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
-import MapView, {PROVIDER_GOOGLE, Marker, Heatmap, Callout} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, Heatmap} from 'react-native-maps';
+
 
 
 export default class MapScreen extends React.Component {
 
     render(){
-        // console.log('MAP', this.props)
         return(
         <MapView
             provider={PROVIDER_GOOGLE}
@@ -43,7 +43,7 @@ export default class MapScreen extends React.Component {
 const styles = StyleSheet.create({
     map: {
         width: '100%',
-        height: '90%',
+        height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
     },

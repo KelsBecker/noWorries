@@ -21,7 +21,7 @@ export default function CategoryPicker(props) {
         </Picker> */}
         <RNPickerSelect
             style={styles.container}
-            onValueChange={(value) => props.categorySelect(value)}
+            onValueChange={(value) => props.handleCategorySelect(value)}
             items={[
                 { label: 'All Locations', value: 'All Locations' },
                 { label: 'Groceries', value: 'Groceries' },

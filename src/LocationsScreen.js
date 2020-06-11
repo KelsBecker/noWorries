@@ -4,13 +4,14 @@ import {ScrollView, StyleSheet, View} from 'react-native'
 
 
 export default function LocationsScreen(props) {
-    // console.log('LOCATION SCREEN', props)
-    const {addFavorite} = props.route.params
+    
+
+    // console.log('LOCATIONS SCREEN', props)
     return(
     <View style={styles.container}>
         <ScrollView>
             <Container>
-                {props.route.params.locations.map(location => 
+                {props.locations.map(location => 
                 <Card key={location.id}>
                     <CardItem>
                         <Body>
@@ -18,7 +19,7 @@ export default function LocationsScreen(props) {
                             <Text>Add A Description or Features</Text>
                         </Body>
                         <CardItem>
-                            <Button onPress={() => addFavorite(location.id)}>
+                            <Button onPress={() => props.addFavorite(location.id)}>
                                 <Text>Favorite!</Text>
                             </Button>
                         </CardItem>
