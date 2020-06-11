@@ -3,9 +3,6 @@ import {StyleSheet, View} from 'react-native'
 import MapScreen from './MapScreen'
 import CategoryPicker from './CategoryPicker'
 
-
-
-
 export default class Homepage extends React.Component{
 
     state = {
@@ -36,7 +33,6 @@ export default class Homepage extends React.Component{
 
 
     render() {
-        // console.log('HOMEPAGE FILTERED LOCATIONS', this.state.filteredLocations)
         return(
             <View style={styles.container}>
                 <CategoryPicker handleCategorySelect={this.handleCategorySelect} />

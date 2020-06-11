@@ -10,6 +10,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
+const URL = 'https://1ea4766204b1.ngrok.io'
 
 
 
@@ -26,7 +27,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    Promise.all([fetch('https://1ea4766204b1.ngrok.io/users'), fetch('https://1ea4766204b1.ngrok.io/locations'), fetch('https://1ea4766204b1.ngrok.io/favorites')])
+    Promise.all([fetch(`${URL}/users`), fetch(`${URL}/locations`), fetch(`${URL}/favorites`)])
     .then(([usersResponse, locationsResponse, favoritesResponse]) => Promise.all([usersResponse.json(), locationsResponse.json(), favoritesResponse.json()]))
     .then(([userData, locationData, favoriteData]) => this.setState({
         users: userData,
