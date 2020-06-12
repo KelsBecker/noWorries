@@ -11,7 +11,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://1ea4766204b1.ngrok.io'
+const URL = 'https://bf6ba3c62215.ngrok.io'
 
 
 
@@ -65,15 +65,25 @@ export default class App extends React.Component {
     .then(data => this.setState({favorites: [...this.state.favorites, data]}))
   }
 
+
+  // updateFavorites = (id) => {
+  //   this.setState({favorites: this.state.favorites.filter(fav => fav.id !== id)})
+  // }
+
   removeFavorite = (id) => {
-    const notFave = this.state.favorites.filter(fave => fave.id !== id)
-    this.setState({favorites: notFave })
     fetch(`${URL}/favorites/${id}`, {
       method: 'DELETE'
     })
+    .then(response => response.json())
+    .then(data => {
+      const newFave = this.state.favorites.filter(fave => fave.id !== data.id)
+      this.setState({favorites: newFave })
+    })
   }
-
+  
+  
   tabScreens = () => {
+    const userFave = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
     return (
     <Tab.Navigator       
     initialRouteName="Homepage"
@@ -97,7 +107,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}>
-        {props => <ProfileScreen {...props} currentUser={this.state.currentUser} favorites={this.state.favorites} removeFavorite={this.removeFavorite} />}
+        {props => <ProfileScreen {...props} currentUser={this.state.currentUser} favorites={userFave} removeFavorite={this.removeFavorite} />}
       </Tab.Screen> 
       <Tab.Screen name='Locations'
         options={{
@@ -144,12 +154,12 @@ export default class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: 'red',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
 

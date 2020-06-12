@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 50,
     },
-    
     formLabel: {
         fontSize: 20,
         color: 'black',
@@ -32,12 +31,15 @@ const styles = StyleSheet.create({
         height: 40,
         paddingHorizontal: 10,
         borderRadius: 50,
-        backgroundColor: '#DCDCDC',
+        backgroundColor: '#F0FFFF',
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderColor: 'cornflowerblue'
     },
     formText: {
         alignItems: 'center',
         justifyContent: 'center',
-        color: '#fff',
+        color: '#87CEFA',
         fontSize: 20,
     },
     text: {
