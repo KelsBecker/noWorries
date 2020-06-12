@@ -1,34 +1,34 @@
 import React from 'react'
 import {StyleSheet, ScrollView} from 'react-native'
 import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
+import FavoriteCard from './FavoriteCard'
 
 
 export default class ProfileScreen extends React.Component {
 
+    // state = {
+    //     favorites: []
+    // }
+
+    // componentDidMount() {
+    //     this.setState({ favorites: this.props.favorites})
+    // }
+
+    // handleDelete = (id) => {
+    //     const newFave = this.state.favorites.filter(fave => fave.id !== id)
+    //     this.setState({favorites: newFave})
+    // }
+
+
+
+
     render(){
-        const userFave = this.props.favorites.filter(favorite => favorite.user_id === this.props.currentUser.id)
-        // console.log('PROFILE', userFave )
+        // const userFave = this.props.favorites.filter(favorite => favorite.user_id === this.props.currentUser.id)
+        // console.log('PROFILE PROPS', this.props )
         return(
             <ScrollView>
-                <Container>
-                    <Text style={{color: 'red', fontSize: 40}}>@{this.props.currentUser.username}</Text>
-                    {userFave.map(favorite => 
-                    <Card key={favorite.id}>
-                        <CardItem>
-                            <Body>
-                                <Text>{favorite.location.name}</Text>
-                                <Text>{favorite.location.address}</Text>
-                                <Text>{favorite.location.description}</Text>
-                            </Body>
-                        </CardItem>
-                        <CardItem>
-                        <Button bordered dark onPress={() => this.props.removeFavorite(favorite.id)}>
-                            <Text>Remove Favorite</Text>
-                        </Button>
-                        </CardItem>
-                    </Card>
-                    )}
-                </Container>
+            <Text style={{color: '#1E90FF', fontSize: 40, alignItems: 'center'}}>Hey @{this.props.currentUser.username}</Text>
+            {this.props.favorites.map(favorite => <FavoriteCard favorite={favorite} key={favorite.id} removeFavorite={this.props.removeFavorite} /> )}
             </ScrollView>
         )
     }
