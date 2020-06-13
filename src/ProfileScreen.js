@@ -6,29 +6,20 @@ import FavoriteCard from './FavoriteCard'
 
 export default class ProfileScreen extends React.Component {
 
-    // state = {
-    //     favorites: []
-    // }
-
-    // componentDidMount() {
-    //     this.setState({ favorites: this.props.favorites})
-    // }
-
-    // handleDelete = (id) => {
-    //     const newFave = this.state.favorites.filter(fave => fave.id !== id)
-    //     this.setState({favorites: newFave})
-    // }
-
-
-
-
     render(){
         // const userFave = this.props.favorites.filter(favorite => favorite.user_id === this.props.currentUser.id)
         // console.log('PROFILE PROPS', this.props )
+        // console.log('PROFILE STATE', this.state)
+        
         return(
             <ScrollView>
             <Text style={{color: '#1E90FF', fontSize: 40, alignItems: 'center'}}>Hey @{this.props.currentUser.username}</Text>
-            {this.props.favorites.map(favorite => <FavoriteCard favorite={favorite} key={favorite.id} removeFavorite={this.props.removeFavorite} /> )}
+            {this.props.favorites.map(favorite => 
+            <FavoriteCard favorite={favorite} key={favorite.id} 
+            removeFavorite={this.props.removeFavorite}
+            url={this.props.url}
+            currentUser={this.props.currentUser}
+            />)}
             </ScrollView>
         )
     }

@@ -11,7 +11,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://bf6ba3c62215.ngrok.io'
+const URL = 'https://79d9c791abbe.ngrok.io'
 
 
 
@@ -107,7 +107,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}>
-        {props => <ProfileScreen {...props} currentUser={this.state.currentUser} favorites={userFave} removeFavorite={this.removeFavorite} />}
+        {props => <ProfileScreen {...props} currentUser={this.state.currentUser} favorites={userFave} removeFavorite={this.removeFavorite} url={URL} />}
       </Tab.Screen> 
       <Tab.Screen name='Locations'
         options={{
