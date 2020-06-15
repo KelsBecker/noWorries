@@ -21,6 +21,7 @@ export default class LocationsScreen extends React.Component {
     }
     
     render(){
+        const searchedLocations = this.state.locations.filter(location => location.name.toLowerCase().includes(this.state.search.toLowerCase()) || location.description.toLowerCase().includes(this.state.search.toLowerCase()))
         console.log('Loation Screen', this.state.search)
         return(
             <ScrollView style={styles.container}>
@@ -34,7 +35,7 @@ export default class LocationsScreen extends React.Component {
                         <Text>Search</Text>
                     </Button>
                 </Header>
-                    {this.state.locations.map(location => 
+                    {searchedLocations.map(location => 
                     <LocationCard location={location} key={location.id} 
                     addFavorite={this.props.addFavorite} 
                     userFave={this.props.userFave} 
