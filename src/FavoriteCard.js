@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card, CardItem, Body, Button, Text} from 'native-base'
-import {TextInput, StyleSheet, View} from 'react-native'
+import {TextInput, StyleSheet, View, TouchableOpacity} from 'react-native'
 
 export default class FavoriteCard extends React.Component {
 
@@ -34,6 +34,14 @@ export default class FavoriteCard extends React.Component {
         .then(data => this.setState({notes: [...this.state.notes, data], content: '' }) )
         }
     }
+
+    deleteNote = (id) => {
+        let remainingNotes = this.state.notes.filter(note => note.id !== id)
+        this.setState({notes: remainingNotes })
+        fetch(`${this.props.url}/notes/${id}`, {
+            method: 'DELETE'
+        })
+    }
     
     render(){
         const userNotes = this.state.notes.filter(note => note.user_id === this.props.currentUser.id)
@@ -42,20 +50,27 @@ export default class FavoriteCard extends React.Component {
             <Card>
                 <CardItem>
                     <Body>
-                        <Text>{this.props.favorite.location.name}</Text>
+                        <Text style={styles.title}>{this.props.favorite.location.name}</Text>
                         <Text>{this.props.favorite.location.address}</Text>
                         <Text>{this.props.favorite.location.description}</Text>
-                        {userNotes.map(note => note.favorite_id === this.props.favorite.id ? 
-                        <Text key={note.id}>{note.content}</Text> : null )}
+                        <Text style={styles.notes}>Notes:</Text>
+                        {userNotes.map(note => note.favorite_id === this.props.favorite.id ?
+                        <View key={note.id}> 
+                            <Text>{note.content}</Text>
+                            <TouchableOpacity onPress={() => this.deleteNote(note.id)}>
+                                <Text>X</Text>  
+                            </TouchableOpacity>
+                        </View> 
+                        : null )}
                     </Body>
                 </CardItem>
-                <View>
+                <View style={styles.container}>
                     <TextInput style={styles.inputStyle} placeholder='Add A Personal Note' value={this.state.content} 
                     onChangeText={(text) => this.handleTextChange(text)}
                     onSubmitEditing={() => this.submitNote(this.props.favorite.id, this.props.favorite.user_id)}
                     />
                 </View>
-                <CardItem>
+                <CardItem style={styles.container}>
                 <Button bordered dark onPress={() => this.props.removeFavorite(this.props.favorite.id)}>
                     <Text>Remove Favorite</Text>
                 </Button>
@@ -67,6 +82,11 @@ export default class FavoriteCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+    },
     inputStyle: {
         marginTop: 20,
         width: 385,
@@ -76,5 +96,15 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'mediumseagreen',
         backgroundColor: 'mintcream',
+        paddingLeft: 10,
     },
+    title: {
+        fontSize: 25,
+        paddingBottom: 10,
+        paddingTop: 5,
+    },
+    notes: {
+        paddingTop: 20,
+        fontSize: 18
+    }
 })

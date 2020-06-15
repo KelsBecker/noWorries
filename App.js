@@ -11,7 +11,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://79d9c791abbe.ngrok.io'
+const URL = 'https://5d871c48c32b.ngrok.io'
 
 
 
@@ -51,8 +51,11 @@ export default class App extends React.Component {
       this.setState({currentUser: user})
   }
 
+  //dont let a user add favorite twice
   addFavorite = (location) => {
     let newFave = {user_id: this.state.currentUser.id, location_id: location}
+    let usersFavorites = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
+    if(!usersFavorites.includes(location)){
     fetch(`${URL}/favorites`, {
         method: 'POST',
         headers: {
@@ -64,11 +67,7 @@ export default class App extends React.Component {
     .then(response => response.json())
     .then(data => this.setState({favorites: [...this.state.favorites, data]}))
   }
-
-
-  // updateFavorites = (id) => {
-  //   this.setState({favorites: this.state.favorites.filter(fav => fav.id !== id)})
-  // }
+}
 
   removeFavorite = (id) => {
     fetch(`${URL}/favorites/${id}`, {
@@ -97,7 +96,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}>
-        {props => <Homepage {...props} currentUser={this.state.currentUser} locations={this.state.locations} />}
+        {props => <Homepage {...props} currentUser={this.state.currentUser} locations={this.state.locations} favorites={userFave} />}
       </Tab.Screen> 
       <Tab.Screen name='Profile'
         options={{
@@ -117,7 +116,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="emoticon" color={color} size={26} />
           ),
         }}>
-        {props => <LocationsScreen {...props} currentUser={this.state.currentUser} locations={this.state.locations} addFavorite={this.addFavorite} />}
+        {props => <LocationsScreen {...props} currentUser={this.state.currentUser} locations={this.state.locations} addFavorite={this.addFavorite} userFave={userFave} />}
       </Tab.Screen> 
     </Tab.Navigator>
     )
@@ -125,14 +124,16 @@ export default class App extends React.Component {
 
   render() {
     const {handleEmailChange, handlePasswordChange} = this
+    // console.log('FAVES', this.state.favorites)
     return (
       <NavigationContainer >
         <Stack.Navigator >
           <Stack.Screen name='Auth' 
           options={{
-            title: 'noWorries',
+            headerShown: false,
+            title: '',
             headerStyle: {
-              backgroundColor: 'black',
+              backgroundColor: 'dodgerblue',
             },
             headerTintColor: '#fff',
             }}>
@@ -140,9 +141,9 @@ export default class App extends React.Component {
           </Stack.Screen>
           <Stack.Screen name='Homepage'
             options={{
-              title: 'My home',
+              title: 'NOWorries',
               headerStyle: {
-                backgroundColor: 'black',
+                backgroundColor: 'dodgerblue',
               },
               headerTintColor: '#fff',
             }}

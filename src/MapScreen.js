@@ -30,7 +30,7 @@ export default class MapScreen extends React.Component {
                 radius={40}
                 opacity={1}
                 gradient={{
-                    colors: ['black', 'purple', 'red', 'yellow', 'white'],
+                    colors: ['#000000', '#183567', '#2e649e', '#17adcb', '#00fafa'],
                     colorMapSize: 200,
                     startPoints: [0.01, 0.04, 0.1, 0.45, 0.5]
                 }}

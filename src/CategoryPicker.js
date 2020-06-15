@@ -7,13 +7,13 @@ import RNPickerSelect from 'react-native-picker-select';
 export default function CategoryPicker(props) {
 
     return(
-        <View>
+        <View style={styles.container}>
         <RNPickerSelect
-            style={styles.container}
+            style={styles.text}
             onValueChange={(value) => props.handleCategorySelect(value)}
             items={[
                 { label: 'All Locations', value: 'All Locations' },
-                { label: 'Groceries', value: 'Groceries' },
+                { label: 'Markets', value: 'Markets' },
                 { label: 'Parks', value: 'Parks' },
                 { label: 'Your Favorites', value: 'Your Favorites'}
             ]}
@@ -25,15 +25,20 @@ export default function CategoryPicker(props) {
 
     const styles = StyleSheet.create({
         container: {
-            fontSize: 50,
-            paddingVertical: 12,
-            paddingHorizontal: 10,
+            width: '100%',
+            paddingTop: 50,
             borderWidth: 1,
             borderColor: 'black',
             borderRadius: 4,
-            color: 'red',
-            paddingRight: 30,
+            alignItems: 'center',
+            justifyContent: 'center'
         },
+        text: {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 50
+        }
     })
 
             {/* <Picker

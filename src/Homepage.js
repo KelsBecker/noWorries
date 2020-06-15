@@ -22,9 +22,11 @@ export default class Homepage extends React.Component{
         let locationArray = []
         if(this.state.selectedCategory === 'Parks'){
             locationArray = [...this.props.locations].filter(location => location.category_id === 2) 
-        } else if(this.state.selectedCategory === 'Groceries'){
+        } else if(this.state.selectedCategory === 'Markets'){
             locationArray = [...this.props.locations].filter(location => location.category_id === 1) 
-        } else {
+        } else if(this.state.selectedCategory === 'Your Favorites'){
+            this.props.favorites.map(obj => locationArray.push(obj.location))
+        }else {
             locationArray = [...this.props.locations]
         }
         this.setState({filteredLocations: locationArray})
@@ -32,6 +34,8 @@ export default class Homepage extends React.Component{
 
 
     render() {
+        // console.log(this.state.selected)
+        // console.log('HomePage', this.props.favorites.map)
         return(
             <View style={styles.container}>
                 <CategoryPicker handleCategorySelect={this.handleCategorySelect} />
