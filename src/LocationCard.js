@@ -3,7 +3,7 @@ import React from 'react'
 import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
 
 export default function LocationCard(props) {
-    // console.log('LOCATION CARD PROPS', props)
+    console.log('LOCATION CARD PROPS', props)
     return(
     <Card>
         <CardItem>
@@ -13,7 +13,7 @@ export default function LocationCard(props) {
                 <Text>{props.location.description}</Text>
             </Body>
         <CardItem>
-            <Button bordered dark onPress={() => props.addFavorite(props.location.id)}>
+            <Button bordered dark onPress={props.userFave.includes(props.location) ? alert('this is already a fave') : () =>  props.addFavorite(props.location.id)}>
                 <Text>Favorite!</Text>
             </Button>
         </CardItem>

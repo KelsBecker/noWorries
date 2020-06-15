@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     formLabel: {
         fontSize: 20,
-        color: 'black',
+        color: 'darkblue',
     },
     inputStyle: {
         marginTop: 20,
