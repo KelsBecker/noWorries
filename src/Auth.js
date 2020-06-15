@@ -4,7 +4,7 @@ import Login from './Login.js'
 
 export default function Auth(props) {
     return(
-        <ImageBackground style={{flex: 1, width:'100%'}} source={{uri:'https://i.pinimg.com/originals/4a/b6/90/4ab690ab37f38e464aabefca63275081.jpg'}}>
+        <ImageBackground style={{flex: 1, width:'100%'}} source={{uri:'https://yada.org/wp-content/uploads/2018/10/light-blue-moving-circles-psychedelic-abstract-vj-background-loop_vk0mp0fsx__F0000.png'}}>
             <View style={styles.container}>
                 <Login emailChange={props.handleEmailChange} passwordChange={props.handlePasswordChange} />
                 <Button title='login' onPress={() => props.currentUser !== undefined ? props.navigation.navigate('Homepage'): alert('Looks like you have a typo! Double check your email address please!')}/>  

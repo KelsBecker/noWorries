@@ -11,7 +11,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://5d871c48c32b.ngrok.io'
+const URL = 'https://3ece26f7032a.ngrok.io'
 
 
 
@@ -24,7 +24,8 @@ export default class App extends React.Component {
     currentUser: undefined,
     locations: [],
     filteredLocations: [],
-    favorites: []
+    favorites: [],
+    search: ''
   }
 
   componentDidMount(){
@@ -56,18 +57,18 @@ export default class App extends React.Component {
     let newFave = {user_id: this.state.currentUser.id, location_id: location}
     let usersFavorites = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
     if(!usersFavorites.includes(location)){
-    fetch(`${URL}/favorites`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'  
-        },
-        body: JSON.stringify(newFave)
-    })
-    .then(response => response.json())
-    .then(data => this.setState({favorites: [...this.state.favorites, data]}))
+      fetch(`${URL}/favorites`, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'  
+          },
+          body: JSON.stringify(newFave)
+      })
+      .then(response => response.json())
+      .then(data => this.setState({favorites: [...this.state.favorites, data]}))
+    }
   }
-}
 
   removeFavorite = (id) => {
     fetch(`${URL}/favorites/${id}`, {
@@ -79,10 +80,10 @@ export default class App extends React.Component {
       this.setState({favorites: newFave })
     })
   }
-  
-  
+
   tabScreens = () => {
     const userFave = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
+    console.log('Search Term', this.state.search)
     return (
     <Tab.Navigator       
     initialRouteName="Homepage"

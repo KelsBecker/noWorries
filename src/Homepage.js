@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native'
 import MapScreen from './MapScreen'
 import CategoryPicker from './CategoryPicker'
 
+
 export default class Homepage extends React.Component{
 
     state = {
