@@ -45,7 +45,7 @@ export default class FavoriteCard extends React.Component {
     
     render(){
         const userNotes = this.state.notes.filter(note => note.user_id === this.props.currentUser.id)
-        console.log('Favorite Card State', this.state)
+        // console.log('Favorite Card State', this.state)
         return(
             <Card>
                 <CardItem>

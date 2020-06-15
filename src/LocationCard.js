@@ -3,7 +3,7 @@ import React from 'react'
 import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
 
 export default function LocationCard(props) {
-    console.log('LOCATION CARD PROPS', props)
+    // console.log('LOCATION CARD PROPS', props)
     return(
     <Card>
         <CardItem>

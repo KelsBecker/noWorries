@@ -9,7 +9,7 @@ export default function CategoryPicker(props) {
     return(
         <View style={styles.container}>
         <RNPickerSelect
-            style={styles.text}
+            style={styles.inputIOS}
             onValueChange={(value) => props.handleCategorySelect(value)}
             items={[
                 { label: 'All Locations', value: 'All Locations' },
@@ -26,14 +26,14 @@ export default function CategoryPicker(props) {
     const styles = StyleSheet.create({
         container: {
             width: '100%',
-            paddingTop: 50,
+            paddingTop: 60,
             borderWidth: 1,
             borderColor: 'black',
             borderRadius: 4,
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center', 
         },
-        text: {
+        inputIOS: {
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
