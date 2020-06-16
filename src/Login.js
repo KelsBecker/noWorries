@@ -4,10 +4,11 @@ import {StyleSheet, Text, View, TextInput} from 'react-native'
 export default function Login(props) {
     return(
         <>
-        <Text style={styles.formLabel}>Welcome, Please Sign In</Text>
+        <Text style={styles.formLabel}>NOWorries</Text>
+        {/* <Text style={{fontSize: 12}}>it means no worries</Text> */}
         <View>
-            <TextInput style={styles.inputStyle} placeholder="Email" onChangeText={text => props.emailChange(text)}/>
-            <TextInput style={styles.inputStyle} secureTextEntry={true} placeholder="Password" onChangeText={text => props.passwordChange(text)} />
+            <TextInput style={styles.inputStyle} value={props.email} placeholder="Email" onChangeText={text => props.emailChange(text)}/>
+            <TextInput style={styles.inputStyle} value={props.password} secureTextEntry={true} placeholder="Password" onChangeText={text => props.passwordChange(text)} />
         </View>
         </>
     )
@@ -22,8 +23,10 @@ const styles = StyleSheet.create({
         height: 50,
     },
     formLabel: {
-        fontSize: 20,
+        fontSize: 25,
         color: 'darkblue',
+        fontFamily: 'PingFangHK-Semibold',
+        fontWeight: 'bold'
     },
     inputStyle: {
         marginTop: 20,
@@ -45,5 +48,6 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontSize: 20,
+        fontFamily: 'PingFangHK-Semibold'
     },
 });    

@@ -7,12 +7,12 @@ export default function LocationCard(props) {
     <Card>
         <CardItem>
             <Body>
-                <Text>{name}</Text>
+                <Text style={{fontSize: 20}}>{name}</Text>
                 <Text>{address}</Text>
                 <Text>{description}</Text>
             </Body>
         <CardItem>
-            <Button bordered dark onPress={props.userFave.some(fave => fave.location_id === id) ? () => alert('Looks like you really love this place, Its already a fave 😃') : () => props.addFavorite(id)}>
+            <Button success onPress={props.userFave.some(fave => fave.location_id === id) ? () => alert('Looks like you really love this place, Its already a fave 😃') : () => props.addFavorite(id)}>
                 <Text>Favorite!</Text>
             </Button>
         </CardItem>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, CardItem, Body, Button, Text} from 'native-base'
+import {Card, CardItem, Body, Button, Text, Icon} from 'native-base'
 import {TextInput, StyleSheet, View, TouchableOpacity} from 'react-native'
 
 export default class FavoriteCard extends React.Component {
@@ -48,9 +48,14 @@ export default class FavoriteCard extends React.Component {
         const {name, address, description} = this.props.favorite.location
         const {id, user_id} = this.props.favorite
         return(
-            <Card>
+            <Card style={styles.card}>
                 <CardItem>
                     <Body>
+                        <View style={styles.button}>
+                        <Button  iconRight transparent onPress={() => this.props.removeFavorite(id)}>
+                            <Icon name='trash'/>
+                        </Button>
+                        </View>
                         <Text style={styles.title}>{name}</Text>
                         <Text>{address}</Text>
                         <Text>{description}</Text>
@@ -71,10 +76,8 @@ export default class FavoriteCard extends React.Component {
                     onSubmitEditing={() => this.submitNote(id, user_id)}
                     />
                 </View>
-                <CardItem style={styles.container}>
-                <Button bordered dark onPress={() => this.props.removeFavorite(id)}>
-                    <Text>Remove Favorite</Text>
-                </Button>
+                <CardItem>
+
                 </CardItem>
             </Card>
         )
@@ -107,5 +110,16 @@ const styles = StyleSheet.create({
     notes: {
         paddingTop: 20,
         fontSize: 18
-    }
+    },
+    card: {
+        borderColor: 'mediumseagreen',
+        borderWidth: 4,
+        borderStyle: 'solid',
+    },
+    button: {
+        // flexDirection: 'row',
+        // justifyContent: 'flex-end'
+        // alignItems: 'flex-end'
+        marginLeft: 353
+    },
 })

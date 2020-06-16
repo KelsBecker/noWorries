@@ -22,15 +22,23 @@ export default function ProfileScreen(props) {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: 'mintcream'
+            backgroundColor: 'mintcream',
         },
         header: {
             flex: 1,
             alignItems: 'center',
+            justifyContent: 'center',
+            height: 100,
+            backgroundColor: 'dodgerblue',
+            margin: 5,
+            borderStyle: 'solid',
+            borderColor: 'mediumseagreen', 
+            borderWidth: 3 
         },
         title: {
-            color: '#1E90FF', 
-            fontSize: 35, 
+            color: '#fff', 
+            fontSize: 25, 
+            fontFamily: 'PingFangHK-Semibold',
         }
     });
 
