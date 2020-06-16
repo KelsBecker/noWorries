@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Button} from 'react-native'
 import Auth from './src/Auth'
 import Homepage from './src/Homepage'
 import ProfileScreen from './src/ProfileScreen'
@@ -50,7 +51,6 @@ export default class App extends React.Component {
       this.setState({currentUser: user})
   }
 
-
   addFavorite = (location) => {
     let newFave = {user_id: this.state.currentUser.id, location_id: location}
     fetch(`${URL}/favorites`, {
@@ -74,6 +74,10 @@ export default class App extends React.Component {
       const newFave = this.state.favorites.filter(fave => fave.id !== data.id)
       this.setState({favorites: newFave })
     })
+  }
+
+  handleLogout = () => {
+    this.setState({email: '', password: '', currentUser: undefined})
   }
 
   tabScreens = () => {
@@ -120,6 +124,7 @@ export default class App extends React.Component {
 
   render() {
     const {handleEmailChange, handlePasswordChange} = this
+    const {email, password} = this.state
     return (
       <NavigationContainer >
         <Stack.Navigator >
@@ -132,16 +137,23 @@ export default class App extends React.Component {
             },
             headerTintColor: '#fff',
             }}>
-          {props => <Auth {...props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser}/>}
+          {props => <Auth {...props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser} email={email} password={password}/>}
           </Stack.Screen>
           <Stack.Screen name='Homepage'
-            options={{
+            options={({navigation}) => ({
+              headerRight: () => (
+                <Button 
+                onPress={() => {navigation.navigate('Auth'); this.handleLogout();}}
+                title='Log Out'
+                color="#fff"
+                />
+              ),
               title: 'NOWorries',
               headerStyle: {
                 backgroundColor: 'dodgerblue',
               },
               headerTintColor: '#fff',
-            }}
+            })}
           component={this.tabScreens}
           />
         </Stack.Navigator>
