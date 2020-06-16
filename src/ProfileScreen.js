@@ -3,23 +3,21 @@ import {StyleSheet, ScrollView, View, Text} from 'react-native'
 import FavoriteCard from './FavoriteCard'
 
 
-export default class ProfileScreen extends React.Component {
+export default function ProfileScreen(props) {
 
-    render(){
-        return(
-            <ScrollView style={styles.container}>
+    return(
+        <ScrollView style={styles.container}>
             <View style={styles.header}>
-            <Text style={styles.title}>Good Afternoon @{this.props.currentUser.username}</Text>
+                <Text style={styles.title}>Good Afternoon @{props.currentUser.username}</Text>
             </View>
-            {this.props.favorites.map(favorite => 
+            {props.favorites.map(favorite => 
             <FavoriteCard favorite={favorite} key={favorite.id} 
-            removeFavorite={this.props.removeFavorite}
-            url={this.props.url}
-            currentUser={this.props.currentUser}
+            removeFavorite={props.removeFavorite}
+            url={props.url}
+            currentUser={props.currentUser}
             />)}
-            </ScrollView>
-        )
-    }
+        </ScrollView>
+    )
 }
 
     const styles = StyleSheet.create({

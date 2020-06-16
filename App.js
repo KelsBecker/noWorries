@@ -10,7 +10,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://b38be3940210.ngrok.io'
+const URL = 'https://d4d580a811f5.ngrok.io'
 
 
 
@@ -78,6 +78,7 @@ export default class App extends React.Component {
 
   tabScreens = () => {
     const userFave = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
+    const {currentUser, locations} = this.state
     return (
     <Tab.Navigator       
     initialRouteName="Homepage"
@@ -91,7 +92,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}>
-        {props => <Homepage {...props} currentUser={this.state.currentUser} locations={this.state.locations} favorites={userFave} />}
+        {props => <Homepage {...props} currentUser={currentUser} locations={locations} favorites={userFave} />}
       </Tab.Screen> 
       <Tab.Screen name='Profile'
         options={{
@@ -101,7 +102,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
         }}>
-        {props => <ProfileScreen {...props} currentUser={this.state.currentUser} favorites={userFave} removeFavorite={this.removeFavorite} url={URL} />}
+        {props => <ProfileScreen {...props} currentUser={currentUser} favorites={userFave} removeFavorite={this.removeFavorite} url={URL} />}
       </Tab.Screen> 
       <Tab.Screen name='Locations'
         options={{
@@ -111,7 +112,7 @@ export default class App extends React.Component {
           <MaterialCommunityIcons name="emoticon" color={color} size={26} />
           ),
         }}>
-        {props => <LocationsScreen {...props} currentUser={this.state.currentUser} locations={this.state.locations} addFavorite={this.addFavorite} userFave={userFave} />}
+        {props => <LocationsScreen {...props} currentUser={currentUser} locations={locations} addFavorite={this.addFavorite} userFave={userFave} />}
       </Tab.Screen> 
     </Tab.Navigator>
     )
