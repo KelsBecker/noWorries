@@ -45,16 +45,17 @@ export default class FavoriteCard extends React.Component {
     
     render(){
         const userNotes = this.state.notes.filter(note => note.user_id === this.props.currentUser.id)
-        // console.log('Favorite Card State', this.state)
+        const {name, address, description} = this.props.favorite.location
+        const {id, user_id} = this.props.favorite
         return(
             <Card>
                 <CardItem>
                     <Body>
-                        <Text style={styles.title}>{this.props.favorite.location.name}</Text>
-                        <Text>{this.props.favorite.location.address}</Text>
-                        <Text>{this.props.favorite.location.description}</Text>
+                        <Text style={styles.title}>{name}</Text>
+                        <Text>{address}</Text>
+                        <Text>{description}</Text>
                         <Text style={styles.notes}>Notes:</Text>
-                        {userNotes.map(note => note.favorite_id === this.props.favorite.id ?
+                        {userNotes.map(note => note.favorite_id === id ?
                         <View key={note.id}> 
                             <Text>{note.content}</Text>
                             <TouchableOpacity onPress={() => this.deleteNote(note.id)}>
@@ -67,11 +68,11 @@ export default class FavoriteCard extends React.Component {
                 <View style={styles.container}>
                     <TextInput style={styles.inputStyle} placeholder='Add A Personal Note' value={this.state.content} 
                     onChangeText={(text) => this.handleTextChange(text)}
-                    onSubmitEditing={() => this.submitNote(this.props.favorite.id, this.props.favorite.user_id)}
+                    onSubmitEditing={() => this.submitNote(id, user_id)}
                     />
                 </View>
                 <CardItem style={styles.container}>
-                <Button bordered dark onPress={() => this.props.removeFavorite(this.props.favorite.id)}>
+                <Button bordered dark onPress={() => this.props.removeFavorite(id)}>
                     <Text>Remove Favorite</Text>
                 </Button>
                 </CardItem>
