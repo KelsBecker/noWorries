@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
-import {ScrollView, StyleSheet, View} from 'react-native'
+import { Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { ScrollView, StyleSheet, View } from 'react-native'
 import LocationCard from './LocationCard'
 
 
@@ -16,16 +16,14 @@ export default class LocationsScreen extends React.Component {
     }
 
     handleSearch = (value) => {
-        // console.log(value)
         this.setState({search: value})
     }
     
     render(){
         const searchedLocations = this.state.locations.filter(location => location.name.toLowerCase().includes(this.state.search.toLowerCase()) || location.description.toLowerCase().includes(this.state.search.toLowerCase()))
-        console.log('Loation Screen', this.state.search)
         return(
             <ScrollView style={styles.container}>
-                <Header searchBar rounded >
+                <Header searchBar rounded style={{paddingBottom: 20}}>
                     <Item>
                         <Icon name="ios-search" />
                         <Input placeholder="Search" onChangeText={(event) => this.handleSearch(event)}/>

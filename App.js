@@ -4,14 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StyleSheet} from 'react-native';
 import Auth from './src/Auth'
 import Homepage from './src/Homepage'
 import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://3ece26f7032a.ngrok.io'
+const URL = 'https://b38be3940210.ngrok.io'
 
 
 
@@ -25,7 +24,6 @@ export default class App extends React.Component {
     locations: [],
     filteredLocations: [],
     favorites: [],
-    search: ''
   }
 
   componentDidMount(){
@@ -52,22 +50,19 @@ export default class App extends React.Component {
       this.setState({currentUser: user})
   }
 
-  //dont let a user add favorite twice
+
   addFavorite = (location) => {
     let newFave = {user_id: this.state.currentUser.id, location_id: location}
-    let usersFavorites = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
-    if(!usersFavorites.includes(location)){
-      fetch(`${URL}/favorites`, {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'  
-          },
-          body: JSON.stringify(newFave)
-      })
-      .then(response => response.json())
-      .then(data => this.setState({favorites: [...this.state.favorites, data]}))
-    }
+    fetch(`${URL}/favorites`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'  
+        },
+        body: JSON.stringify(newFave)
+    })
+    .then(response => response.json())
+    .then(data => this.setState({favorites: [...this.state.favorites, data]}))
   }
 
   removeFavorite = (id) => {
@@ -83,7 +78,6 @@ export default class App extends React.Component {
 
   tabScreens = () => {
     const userFave = this.state.favorites.filter(favorite => favorite.user_id === this.state.currentUser.id)
-    console.log('Search Term', this.state.search)
     return (
     <Tab.Navigator       
     initialRouteName="Homepage"
@@ -125,7 +119,6 @@ export default class App extends React.Component {
 
   render() {
     const {handleEmailChange, handlePasswordChange} = this
-    // console.log('FAVES', this.state.favorites)
     return (
       <NavigationContainer >
         <Stack.Navigator >
@@ -156,12 +149,5 @@ export default class App extends React.Component {
   }
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: 'red',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+
 
