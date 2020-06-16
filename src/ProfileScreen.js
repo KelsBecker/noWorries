@@ -1,16 +1,11 @@
 import React from 'react'
-import {StyleSheet, ScrollView, View} from 'react-native'
-import {Container, Card, CardItem, Text, Body, Button} from 'native-base'
+import {StyleSheet, ScrollView, View, Text} from 'react-native'
 import FavoriteCard from './FavoriteCard'
 
 
 export default class ProfileScreen extends React.Component {
 
     render(){
-        // const userFave = this.props.favorites.filter(favorite => favorite.user_id === this.props.currentUser.id)
-        // console.log('PROFILE PROPS', this.props )
-        // console.log('PROFILE STATE', this.state)
-        
         return(
             <ScrollView style={styles.container}>
             <View style={styles.header}>

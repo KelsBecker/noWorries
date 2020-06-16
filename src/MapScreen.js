@@ -27,8 +27,8 @@ export default class MapScreen extends React.Component {
                 </Marker>)}
                 <Heatmap
                 points={this.props.locations}
-                radius={40}
-                opacity={1}
+                radius={50}
+                opacity={2}
                 gradient={{
                     colors: ['#000000', '#183567', '#2e649e', '#17adcb', '#00fafa'],
                     colorMapSize: 200,
