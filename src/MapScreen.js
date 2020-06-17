@@ -1,10 +1,27 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
 import MapView, {PROVIDER_GOOGLE, Marker, Heatmap} from 'react-native-maps';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
+
 
 
 
 export default class MapScreen extends React.Component {
+
+    // componentDidMount(){
+    //     this.getLocation()
+    // }
+
+    // getLocation = async() => {
+    //     const {status} = await Permissions.getAsync(Permissions.LOCATION)
+    //     if(status !== 'granted') {
+    //         console.log(status)
+    //     } else if (status === 'granted') {
+    //     const userLocation = await Location.getCurrentPositionAsync({})
+    //     console.log('UserLocatoin', userLocation)
+    //     }
+    // }
 
     render(){
         return(

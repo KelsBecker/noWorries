@@ -67,7 +67,7 @@ export default class FavoriteCard extends React.Component {
                             </View>
                             <View>
                             <TouchableOpacity onPress={() => this.deleteNote(note.id)}>
-                            <Text>X</Text>  
+                            <Text>x</Text>  
                             </TouchableOpacity>
                             </View>
                         </View> 
