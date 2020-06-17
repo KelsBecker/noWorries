@@ -5,7 +5,6 @@ export default function Login(props) {
     return(
         <>
         <Text style={styles.formLabel}>NOWorries</Text>
-        {/* <Text style={{fontSize: 12}}>it means no worries</Text> */}
         <View>
             <TextInput style={styles.inputStyle} value={props.email} placeholder="Email" onChangeText={text => props.emailChange(text)}/>
             <TextInput style={styles.inputStyle} value={props.password} secureTextEntry={true} placeholder="Password" onChangeText={text => props.passwordChange(text)} />

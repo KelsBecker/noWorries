@@ -7,11 +7,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Button} from 'react-native'
 import Auth from './src/Auth'
 import Homepage from './src/Homepage'
+import SignUp from './src/SignUp'
 import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://d4d580a811f5.ngrok.io'
+const URL = 'https://5d501de6d2a4.ngrok.io'
 
 
 
@@ -139,6 +140,7 @@ export default class App extends React.Component {
             }}>
           {props => <Auth {...props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser} email={email} password={password}/>}
           </Stack.Screen>
+          <Stack.Screen name='SignUp' component={SignUp}/>
           <Stack.Screen name='Homepage'
             options={({navigation}) => ({
               headerRight: () => (

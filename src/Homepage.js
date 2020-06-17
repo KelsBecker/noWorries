@@ -35,12 +35,14 @@ export default class Homepage extends React.Component{
 
 
     render() {
+        const userFavorite = this.props.favorites.map(obj => obj.location)
+        console.log('WILL THIS WORK', userFavorite)
         // console.log(this.state.selected)
         // console.log('HomePage', this.props.favorites.map)
         return(
             <View style={styles.container}>
                 <CategoryPicker handleCategorySelect={this.handleCategorySelect} />
-                <MapScreen locations={this.state.filteredLocations} />
+                <MapScreen locations={this.state.filteredLocations}  />
             </View>
         )
     }

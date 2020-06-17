@@ -57,15 +57,19 @@ export default class FavoriteCard extends React.Component {
                         </Button>
                         </View>
                         <Text style={styles.title}>{name}</Text>
-                        <Text>{address}</Text>
+                        <Text style={styles.address}>{address}</Text>
                         <Text>{description}</Text>
                         <Text style={styles.notes}>Notes:</Text>
                         {userNotes.map(note => note.favorite_id === id ?
-                        <View key={note.id}> 
+                        <View key={note.id} style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <View style={{flex: 1}}> 
                             <Text>{note.content}</Text>
+                            </View>
+                            <View>
                             <TouchableOpacity onPress={() => this.deleteNote(note.id)}>
-                                <Text>X</Text>  
+                            <Text>x</Text>  
                             </TouchableOpacity>
+                            </View>
                         </View> 
                         : null )}
                     </Body>
@@ -117,9 +121,10 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
     },
     button: {
-        // flexDirection: 'row',
-        // justifyContent: 'flex-end'
-        // alignItems: 'flex-end'
-        marginLeft: 353
+        marginLeft: 353,
+        // width: 10
     },
+    address: {
+        fontSize: 18
+    }
 })
