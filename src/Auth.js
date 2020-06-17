@@ -12,7 +12,6 @@ export default function Auth(props) {
             <Text style={{fontFamily: 'PingFangHK-Semibold'}}>Don't Have an Account Yet?</Text>
             <Button title='sign up'></Button>  
         </View>
-    
     )
 }
 
