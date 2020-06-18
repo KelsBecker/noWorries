@@ -12,7 +12,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://5d501de6d2a4.ngrok.io'
+const URL = 'https://6651c668b3f1.ngrok.io'
 
 
 
@@ -140,7 +140,7 @@ export default class App extends React.Component {
             }}>
           {props => <Auth {...props} handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} currentUser={this.state.currentUser} email={email} password={password}/>}
           </Stack.Screen>
-          <Stack.Screen name='SignUp' component={SignUp}/>
+          <Stack.Screen name='SignUp' component={SignUp} options={{ headerShown: false}}/>
           <Stack.Screen name='Homepage'
             options={({navigation}) => ({
               headerRight: () => (
