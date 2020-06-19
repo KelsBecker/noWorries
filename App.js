@@ -12,7 +12,7 @@ import ProfileScreen from './src/ProfileScreen'
 import LocationsScreen from './src/LocationsScreen'
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
-const URL = 'https://6651c668b3f1.ngrok.io'
+const URL = 'https://dad1fee7d03f.ngrok.io'
 
 
 
