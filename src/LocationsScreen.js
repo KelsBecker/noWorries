@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Item, Input, Icon, Button, Text } from 'native-base';
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import LocationCard from './LocationCard'
 
 

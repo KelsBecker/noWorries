@@ -35,8 +35,6 @@ export default class Homepage extends React.Component{
 
 
     render() {
-        // const userFavorite = this.props.favorites.map(obj => obj.location)
-        // console.log('WILL THIS WORK', userFavorite)
         return(
             <View style={styles.container}>
                 <CategoryPicker handleCategorySelect={this.handleCategorySelect} />
