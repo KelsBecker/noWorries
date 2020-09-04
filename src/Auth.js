@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Button, ImageBackground, Text, Image} from 'react-native';
+import {StyleSheet, View, Button, Text, Image} from 'react-native';
 import Login from './Login.js'
 
 

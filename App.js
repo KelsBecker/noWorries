@@ -14,8 +14,6 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator()
 const URL = 'https://a9ac64cd25b1.ngrok.io'
 
-
-
 export default class App extends React.Component {
 
   state = {

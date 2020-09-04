@@ -1,8 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import RNPickerSelect from 'react-native-picker-select';
-// import {Picker} from '@react-native-community/picker';
-
 
 export default function CategoryPicker(props) {
 
@@ -22,7 +20,6 @@ export default function CategoryPicker(props) {
     )
 }
 
-
     const styles = StyleSheet.create({
         container: {
             width: '100%',
@@ -41,14 +38,3 @@ export default function CategoryPicker(props) {
         }
     })
 
-            {/* <Picker
-        selectedValue={'All Locations'}
-        style={{height: 50, width: 100}}
-        onValueChange={(itemValue) =>
-        props.categorySelect(itemValue)
-        }>
-        <Picker.Item label="All Locations" value="All Locations" />
-        <Picker.Item label="Groceries" value="Groceries" />
-        <Picker.Item label="Parks" value="Parks" />
-        <Picker.Item label="Your Favorites" value="Your Favorites" />
-        </Picker> */}
